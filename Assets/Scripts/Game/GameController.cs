@@ -6,6 +6,7 @@ namespace Game
 {
     public class GameController : MonoBehaviour
     {
+        private const int ATTEMPTS_MULTIPLICATOR = 2;
         private int _currentAttempts;
         [SerializeField] private GameplayController _game;
         [SerializeField] private GameInterface _gameInterface;
@@ -44,7 +45,7 @@ namespace Game
 
         private void IncreaseAttempts()
         {
-            CurrentAttempts += CurrentAttempts * 2;
+            CurrentAttempts += CurrentAttempts * ATTEMPTS_MULTIPLICATOR;
         }
 
         private void OnLevelComplete()
