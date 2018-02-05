@@ -12,6 +12,9 @@ namespace Game
         [SerializeField] private InputController _input;
         [SerializeField] private GameSettings _settings;
 
+        private event Action WinEvent;
+        private event Action LooseEvent;
+        private event Action<int> AttemptsCountChanged;
         private IWordsProvider _wordProvider;
 
         private int CurrentAttempts
@@ -26,10 +29,6 @@ namespace Game
             }
         }
 
-        private event Action WinEvent;
-        private event Action LooseEvent;
-        private event Action<int> AttemptsCountChanged;
-
 
         private void OnWin()
         {
@@ -40,16 +39,20 @@ namespace Game
         {
             _wordProvider.Reset();
             CurrentAttempts = _settings.StartAttempts;
-            NewLevel();
+            InitNewLevel();
+        }
+
+        private void IncreaseAttempts()
+        {
+            CurrentAttempts += CurrentAttempts * 2;
         }
 
         private void OnLevelComplete()
         {
-            CurrentAttempts += CurrentAttempts * 2;
-            NewLevel();
+            InitNewLevel();
         }
 
-        private void NewLevel()
+        private void InitNewLevel()
         {
             var nextWord = NextWord();
             if (nextWord == null)

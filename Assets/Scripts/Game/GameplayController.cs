@@ -31,10 +31,6 @@ namespace Game
 
         public void Init(string word)
         {
-            //foreach (List<TextItem> textItems in textItemDictionary.Values)
-            //{
-            //    textItems.ForEach(x => Destroy(x.gameObject));
-            //}
 
             _textItems.ForEach(x =>
             {
