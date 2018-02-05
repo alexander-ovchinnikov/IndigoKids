@@ -6,7 +6,6 @@ namespace Game
 {
     public class GameController : MonoBehaviour
     {
-        private const int ATTEMPTS_MULTIPLICATOR = 2;
         private int _currentAttempts;
         [SerializeField] private GameplayController _game;
         [SerializeField] private GameInterface _gameInterface;
@@ -33,19 +32,19 @@ namespace Game
 
         private void OnWin()
         {
+            CurrentAttempts = _settings.StartAttempts;
             ResetGame();
         }
 
         private void ResetGame()
         {
             _wordProvider.Reset();
-            CurrentAttempts = _settings.StartAttempts;
             InitNewLevel();
         }
 
         private void IncreaseAttempts()
         {
-            CurrentAttempts += CurrentAttempts * ATTEMPTS_MULTIPLICATOR;
+            CurrentAttempts += CurrentAttempts;
         }
 
         private void OnLevelComplete()
@@ -71,6 +70,7 @@ namespace Game
 
         private void OnLoose()
         {
+            CurrentAttempts = 0;
             ResetGame();
         }
 
