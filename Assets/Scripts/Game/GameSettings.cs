@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using Game.Interfaces;
 using UnityEngine;
 
@@ -24,12 +23,6 @@ namespace Game
 
         private WordsProvider(TextAsset asset, int wordLimit, WordsFilterTypes wordsFilterType)
         {
-            //_minWordLeangth = wordLimit;
-            //Debug.Log(wordLimit);
-            //Regex re = new Regex("[^A-z]|\b.{}{0," + wordLimit + ",}\b");
-
-            //string filtered = re.Replace(asset.text.ToLower(), " ");
-            //var wordsQuery = filtered.Split(' ').GroupBy(w => w);
             var wordsQuery = asset.text.Split(' ')
                 .Where(q => q.Length >= wordLimit)
                 .GroupBy(q => q.ToLower())
@@ -56,10 +49,8 @@ namespace Game
 
         public string GetNextWord()
         {
-
             _words.MoveNext();
             var word = _words.Current;
-            Debug.Log(">>" + word + "<<");
             return word;
         }
 
