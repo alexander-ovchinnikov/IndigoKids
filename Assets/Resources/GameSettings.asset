@@ -14,4 +14,4 @@ MonoBehaviour:
   _minWordCount: 4
   _source: {fileID: 4900000, guid: c3802b90504d14e65843a3f99d5791db, type: 3}
   _startAttempts: 4
-  _wordsFilterType: 2
+  _wordsFilterType: 0
