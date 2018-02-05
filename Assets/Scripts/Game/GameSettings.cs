@@ -53,16 +53,9 @@ namespace Game
             _words = wordsQuery.Select(g => g.Key).ToList().GetEnumerator();
         }
 
-        private int i = 0;
 
         public string GetNextWord()
         {
-            i++;
-            if (i >= 5)
-            {
-                i = 0;
-                return null;
-            }
 
             _words.MoveNext();
             var word = _words.Current;
