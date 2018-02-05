@@ -49,6 +49,7 @@ namespace Game
 
         private void OnLevelComplete()
         {
+            IncreaseAttempts();
             InitNewLevel();
         }
 
