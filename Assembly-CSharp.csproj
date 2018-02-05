@@ -59,7 +59,7 @@
     <Compile Include="Assets\Scripts\Game\GUIElements\TextButton.cs" />
     <Compile Include="Assets\Scripts\Game\GUIElements\TextItem.cs" />
     <Compile Include="Assets\Scripts\Game\InputController.cs" />
-    <Compile Include="Assets\Scripts\Game\Interfaces\IWordsProvider.cs" />
+    <Compile Include="Assets\Scripts\Game\WordsProvider.cs" />
     <None Include="Assets\Resources\alice30.txt" />
     <Reference Include="UnityEngine.UI">
       <HintPath>/opt/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

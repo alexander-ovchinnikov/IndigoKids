@@ -21,21 +21,19 @@ namespace Game
                 _textItemDictionary[letter].ForEach(letterItem => { letterItem.Show(); });
                 _textItemDictionary.Remove(letter);
                 if (_textItemDictionary.Count != 0) return;
-                if (OnWordComplete != null) OnWordComplete.Invoke();
+                if (OnWordComplete != null) OnWordComplete();
             }
             else
             {
-                if (OnLetterMiss != null) OnLetterMiss.Invoke();
+                if (OnLetterMiss != null) OnLetterMiss();
             }
         }
 
         public void Init(string word)
         {
-
             _textItems.ForEach(x =>
             {
                 {
-                    x.gameObject.SetActive(false);
                     Destroy(x.gameObject);
                 }
             });

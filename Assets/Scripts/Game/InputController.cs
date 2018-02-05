@@ -39,7 +39,7 @@ namespace Game
         private void OnButtonPress(char letter)
         {
             _letterButtons[letter].Hide();
-            if (OnKeyPressedEvent != null) OnKeyPressedEvent.Invoke(letter);
+            if (OnKeyPressedEvent != null) OnKeyPressedEvent(letter);
         }
     }
 }

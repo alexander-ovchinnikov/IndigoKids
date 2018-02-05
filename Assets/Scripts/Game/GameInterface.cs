@@ -6,13 +6,13 @@ namespace Game
 {
     public class GameInterface : MonoBehaviour
     {
-        [SerializeField] private Text _attempts;
+        [SerializeField] private Text _attemptsText;
         [SerializeField] private GameObject _loosMessage;
         [SerializeField] private GameObject _winMessage;
 
         public void OnAttemptsChanged(int attempts)
         {
-            _attempts.text = attempts.ToString();
+            _attemptsText.text = attempts.ToString();
         }
 
         public void OnWin()
@@ -21,9 +21,9 @@ namespace Game
         }
 
 
-        public void OnLoose()
+        public void OnLose()
         {
-            StartCoroutine(ShowLooseMessage());
+            StartCoroutine(ShowLoseMessage());
         }
 
         private void Start()
@@ -39,7 +39,7 @@ namespace Game
             _winMessage.gameObject.SetActive(false);
         }
 
-        private IEnumerator ShowLooseMessage()
+        private IEnumerator ShowLoseMessage()
         {
             _loosMessage.gameObject.SetActive(true);
             yield return new WaitForSeconds(5f);

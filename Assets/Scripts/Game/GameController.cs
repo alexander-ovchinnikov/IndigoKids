@@ -1,5 +1,4 @@
 ﻿using System;
-using Game.Interfaces;
 using UnityEngine;
 
 namespace Game
@@ -13,9 +12,9 @@ namespace Game
         [SerializeField] private GameSettings _settings;
 
         private event Action WinEvent;
-        private event Action LooseEvent;
+        private event Action LoseEvent;
         private event Action<int> AttemptsCountChanged;
-        private IWordsProvider _wordProvider;
+        private WordsProvider _wordProvider;
 
         private int CurrentAttempts
         {
@@ -23,9 +22,9 @@ namespace Game
             set
             {
                 _currentAttempts = value;
-                if (AttemptsCountChanged != null) AttemptsCountChanged.Invoke(value);
+                if (AttemptsCountChanged != null) AttemptsCountChanged(value);
                 if (value >= 0) return;
-                if (LooseEvent != null) LooseEvent.Invoke();
+                if (LoseEvent != null) LoseEvent();
             }
         }
 
@@ -55,10 +54,10 @@ namespace Game
 
         private void InitNewLevel()
         {
-            var nextWord = NextWord();
+            var nextWord = GetNextWord();
             if (nextWord == null)
             {
-                if (WinEvent != null) WinEvent.Invoke();
+                if (WinEvent != null) WinEvent();
             }
             else
             {
@@ -68,7 +67,7 @@ namespace Game
             _input.OnNewLevel();
         }
 
-        private void OnLoose()
+        private void OnLose()
         {
             CurrentAttempts = 0;
             ResetGame();
@@ -80,7 +79,7 @@ namespace Game
         }
 
 
-        private string NextWord()
+        private string GetNextWord()
         {
             return _wordProvider.GetNextWord();
         }
@@ -98,13 +97,13 @@ namespace Game
             WinEvent += OnWin;
             WinEvent += _gameInterface.OnWin;
 
-            LooseEvent += OnLoose;
-            LooseEvent += _gameInterface.OnLoose;
+            LoseEvent += OnLose;
+            LoseEvent += _gameInterface.OnLose;
 
             AttemptsCountChanged += _gameInterface.OnAttemptsChanged;
 
             _game.Init(
-                NextWord()
+                GetNextWord()
             );
 
             CurrentAttempts = _settings.StartAttempts;
